@@ -1,0 +1,432 @@
+SQL> INSERT INTO JUDGE VALUES (1001,'RAM',912345678);
+
+1 row created.
+
+SQL> INSERT INTO JUDGE VALUES (1002,'BALA',923456781);
+
+1 row created.
+
+SQL> INSERT INTO JUDGE VALUES (1003,'VINAI',934567812);
+
+1 row created.
+
+SQL> INSERT INTO JUDGE VALUES (1004,'MANI',945678123);
+
+1 row created.
+
+SQL> INSERT INTO JUDGE VALUES (1005,'KEERTHI',956781234);
+
+1 row created.
+
+SQL> SELECT * FROM JUDGE;
+
+      J_ID J_NAME             J_PHONE
+---------- --------------- ----------
+      1001 RAM              912345678
+      1002 BALA             923456781
+      1003 VINAI            934567812
+      1004 MANI             945678123
+      1005 KEERTHI          956781234
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL>
+
+
+
+SQL> INSERT INTO PROSECUTOR VALUES (2001,'SHANMUGAM',967812345,'SHAN@GMAIL.COM');
+
+1 row created.
+
+SQL> INSERT INTO PROSECUTOR VALUES (2002,'DAVISH',978123456,'DAVISH@GMAIL.COM');
+INSERT INTO PROSECUTOR VALUES (2002,'DAVISH',978123456,'DAVISH@GMAIL.COM')
+                                                       *
+ERROR at line 1:
+ORA-12899: value too large for column "DBMSPRO"."PROSECUTOR"."P_EMAIL" (actual:
+16, maximum: 15)
+
+
+SQL> INSERT INTO PROSECUTOR VALUES (2002,'DAVISH',978123456,'DAV@GMAIL.COM');
+
+1 row created.
+
+SQL> INSERT INTO PROSECUTOR VALUES (2003,'HANS',981234567,'HANS@GMAIL.COM');
+
+1 row created.
+
+SQL> INSERT INTO PROSECUTOR VALUES (2004,'RAMYA',912345671,'HANS@GMAIL.COM');
+
+1 row created.
+
+SQL> INSERT INTO PROSECUTOR VALUES (2005,'VEENA',912345672,'VEENA@GMAIL.COM');
+
+1 row created.
+
+SQL> UPDATE
+  2  SET P_EMAIL='RAMYA@GMAIL.COM
+  3  WHERE P_ID=1004;
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> UPDATE
+  2  SET P_EMAIL='RAMYA@GMAIL.COM'
+  3  WHERE P_ID=1004;
+SET P_EMAIL='RAMYA@GMAIL.COM'
+*
+ERROR at line 2:
+ORA-00903: invalid table name
+
+
+SQL> UPDATE PROSECUTOR
+  2  SET P_EMAIL='RAMYA@GMAIL.COM'
+  3  WHERE P_ID=1004;
+
+0 rows updated.
+
+SQL> SELECT * FROM PROSECUTOR;
+
+      P_ID P_NAME             P_PHONE P_EMAIL
+---------- --------------- ---------- ---------------
+      2001 SHANMUGAM        967812345 SHAN@GMAIL.COM
+      2002 DAVISH           978123456 DAV@GMAIL.COM
+      2003 HANS             981234567 HANS@GMAIL.COM
+      2004 RAMYA            912345671 HANS@GMAIL.COM
+      2005 VEENA            912345672 VEENA@GMAIL.COM
+
+SQL> UPDATE PROSECUTOR
+  2  SET P_EMAIL='RAMYA@GMAIL.COM'
+  3  WHERE P_ID=2004;
+
+1 row updated.
+
+SQL> SELECT * FROM PROSECUTOR;
+
+      P_ID P_NAME             P_PHONE P_EMAIL
+---------- --------------- ---------- ---------------
+      2001 SHANMUGAM        967812345 SHAN@GMAIL.COM
+      2002 DAVISH           978123456 DAV@GMAIL.COM
+      2003 HANS             981234567 HANS@GMAIL.COM
+      2004 RAMYA            912345671 RAMYA@GMAIL.COM
+      2005 VEENA            912345672 VEENA@GMAIL.COM
+
+SQL>
+
+
+
+SQL> INSERT INTO CRIME VALUES (3002,'CRIMINAL','NAMAKKAL','22-JUN-2013');
+
+1 row created.
+
+SQL> INSERT INTO CRIME VALUES (3003,'CIVIL','TRICHY','24-MAR-2015');
+
+1 row created.
+
+SQL> INSERT INTO CRIME VALUES (3004,'CRIMINAL','ARIYALUR','18-MAY-2015');
+
+1 row created.
+
+SQL> INSERT INTO CRIME VALUES (3005,'CIVIL','MADHURAI','02-DEC-2016');
+
+1 row created.
+
+SQL> SELECT * FROM CRIME;
+
+      C_ID TYPE       LOCATION   C_DATE
+---------- ---------- ---------- ---------
+      3001 CRIMINAL   CHENNAI    11-JAN-14
+      3002 CRIMINAL   NAMAKKAL   22-JUN-13
+      3003 CIVIL      TRICHY     24-MAR-15
+      3004 CRIMINAL   ARIYALUR   18-MAY-15
+      3005 CIVIL      MADHURAI   02-DEC-16
+
+SQL> COMMIT
+  2  ;
+
+Commit complete.
+
+SQL>
+
+      C_ID TYPE       LOCATION   C_DATE
+---------- ---------- ---------- ---------
+      3001 CRIMINAL   CHENNAI    11-JAN-14
+      3002 CRIMINAL   NAMAKKAL   22-JUN-13
+      3003 CIVIL      TRICHY     24-MAR-15
+      3004 CRIMINAL   ARIYALUR   18-MAY-15
+      3005 CIVIL      MADHURAI   02-DEC-16
+
+SQL> COMMIT
+  2  ;
+
+Commit complete.
+
+SQL> DESC CRIMINAL;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CR_ID                                     NOT NULL NUMBER(5)
+ C_NAME                                             VARCHAR2(10)
+ C_ID                                               NUMBER(5)
+
+SQL> INSERT INTO CRIMINAL VALUES (4001,'INDHRA',3003);
+
+1 row created.
+
+SQL> INSERT INTO CRIMINAL VALUES (4002,'SIVANI',3005);
+
+1 row created.
+
+SQL> INSERT INTO CRIMINAL VALUES (4003,'RESHMA',3001);
+
+1 row created.
+
+SQL> INSERT INTO CRIMINAL VALUES (4004,'DEV',3002);
+
+1 row created.
+
+SQL> INSERT INTO CRIMINAL VALUES (4005,'VISHNU',3004);
+
+1 row created.
+
+SQL> DESC CRIMINAL;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CR_ID                                     NOT NULL NUMBER(5)
+ C_NAME                                             VARCHAR2(10)
+ C_ID                                               NUMBER(5)
+
+SQL> SELECT * FROM CRIMINAL;
+
+     CR_ID C_NAME           C_ID
+---------- ---------- ----------
+      4001 INDHRA           3003
+      4002 SIVANI           3005
+      4003 RESHMA           3001
+      4004 DEV              3002
+      4005 VISHNU           3004
+
+SQL> DESC ARRESTING_OFFICER;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ A_NAME                                    NOT NULL VARCHAR2(15)
+ CR_ID                                     NOT NULL NUMBER(5)
+ ARREST_DATE                                        DATE
+
+SQL> INSERT INTO CRIMINAL VALUES ('KAUSHIK',4002,'3-JAN-2017');
+INSERT INTO CRIMINAL VALUES ('KAUSHIK',4002,'3-JAN-2017')
+                             *
+ERROR at line 1:
+ORA-01722: invalid number
+
+
+SQL> INSERT INTO ARRESTING_OFFICER VALUES ('KAUSHIK',4002,'3-JAN-2017');
+
+1 row created.
+
+SQL> INSERT INTO ARRESTING_OFFICER VALUES ('ARUN',4004,'26-SEP-2013');
+
+1 row created.
+
+SQL> INSERT INTO ARRESTING_OFFICER VALUES ('SWAEDHA',4005,'25-AUG-2015');
+
+1 row created.
+
+SQL> INSERT INTO ARRESTING_OFFICER VALUES ('KAVINI',4003,'15-MAY-2014');
+
+1 row created.
+
+SQL> INSERT INTO ARRESTING_OFFICER VALUES ('GIRI',4001,'17-DEC-2015');
+
+1 row created.
+
+SQL> SELECT * FROM ARRESTING_OFFICER;
+
+A_NAME               CR_ID ARREST_DA
+--------------- ---------- ---------
+KAUSHIK               4002 03-JAN-17
+ARUN                  4004 26-SEP-13
+SWAEDHA               4005 25-AUG-15
+KAVINI                4003 15-MAY-14
+GIRI                  4001 17-DEC-15
+
+SQL> DESC REGISTER;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ R_ID                                      NOT NULL NUMBER(5)
+ R_NAME                                             VARCHAR2(15)
+
+SQL> INSERT INTO REGISTER VALUES (5001,'AJITH');
+
+1 row created.
+
+SQL> INSERT INTO REGISTER VALUES (5002,'SHALNI');
+
+1 row created.
+
+SQL> DESC REGISTER;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ R_ID                                      NOT NULL NUMBER(5)
+ R_NAME                                             VARCHAR2(15)
+
+SQL> SELECT * FROM REGISTER;
+
+      R_ID R_NAME
+---------- ---------------
+      5001 AJITH
+      5002 SHALNI
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL>
+
+
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+ARRESTING_OFFICER              TABLE
+CASE                           TABLE
+CRIME                          TABLE
+CRIMINAL                       TABLE
+DEPENDENT                      TABLE
+JUDGE                          TABLE
+PROSECUTOR                     TABLE
+REGISTER                       TABLE
+RESHEDULE                      TABLE
+
+9 rows selected.
+
+SQL> select * from arresting_officer;
+
+A_NAME               CR_ID ARREST_DA
+--------------- ---------- ---------
+KAUSHIK               4002 03-JAN-17
+ARUN                  4004 26-SEP-13
+SWAEDHA               4005 25-AUG-15
+KAVINI                4003 15-MAY-14
+GIRI                  4001 17-DEC-15
+
+
+
+SQL> select * from case;
+
+       CIN S_DATE    E_DATE          P_ID       J_ID
+---------- --------- --------- ---------- ----------
+      6001 09-DEC-16 10-JAN-17       2003       1004
+      6002 24-JAN-13 30-SEP-13       2001       1003
+      6003 27-MAY-15 29-AUG-15       2004       1002
+      6004 13-JAN-14 18-MAY-14       2003       1001
+      6005 03-APR-15 23-DEC-15       2001       1003
+
+
+
+
+SQL> select * from crime;
+
+      C_ID TYPE       LOCATION   C_DATE
+---------- ---------- ---------- ---------
+      3001 CRIMINAL   CHENNAI    11-JAN-14
+      3002 CRIMINAL   NAMAKKAL   22-JUN-13
+      3003 CIVIL      TRICHY     24-MAR-15
+      3004 CRIMINAL   ARIYALUR   18-MAY-15
+      3005 CIVIL      MADHURAI   02-DEC-16
+
+
+
+
+SQL> select * from criminal;
+
+     CR_ID C_NAME           C_ID
+---------- ---------- ----------
+      4001 INDHRA           3003
+      4002 SIVANI           3005
+      4003 RESHMA           3001
+      4004 DEV              3002
+      4005 VISHNU           3004
+
+
+
+SQL> select * from dependent;
+
+D_NAME             D_PHONE        CIN
+--------------- ---------- ----------
+VIGNESH         7463546372       6002
+RAJ             9423546372       6003
+RAVI            9873456372       6001
+PINKY           9873443272       6005
+ROSY            8796443272       6004
+
+
+
+
+SQL> select * from judge;
+
+      J_ID J_NAME             J_PHONE
+---------- --------------- ----------
+      1001 RAM              912345678
+      1002 BALA             923456781
+      1003 VINAI            934567812
+      1004 MANI             945678123
+      1005 KEERTHI          956781234
+
+
+
+
+SQL> select * from prosecutor;
+
+      P_ID P_NAME             P_PHONE P_EMAIL
+---------- --------------- ---------- ---------------
+      2001 SHANMUGAM        967812345 SHAN@GMAIL.COM
+      2002 DAVISH           978123456 DAV@GMAIL.COM
+      2003 HANS             981234567 HANS@GMAIL.COM
+      2004 RAMYA            912345671 RAMYA@GMAIL.COM
+      2005 VEENA            912345672 VEENA@GMAIL.COM
+
+
+
+
+SQL> select * from register;
+
+      R_ID R_NAME
+---------- ---------------
+      5001 AJITH
+      5002 SHALNI
+
+
+
+
+SQL> select * from reshedule;
+
+       CIN       R_ID ADJ_REASON           OLD_DATE  NEW_DATE
+---------- ---------- -------------------- --------- ---------
+      6004       5001 DEATH                13-JAN-14 23-JAN-14
+      6002       5002 HEALTH PROBLEM       24-JAN-13 02-FEB-13
+      6005       5002 LACK OF PROOF        03-APR-15 09-MAY-15
+
+SQL>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
